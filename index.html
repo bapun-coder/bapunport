@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pabitra Das Adhikari</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ================= HERO SECTION ================= -->
+<section class="hero">
+
+    <!-- LEFT SIDE -->
+    <div class="hero-left">
+        <img src="myphoto.jpg" alt="Pabitra Photo" class="hero-img">
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="hero-right">
+        
+        <div class="name-box">
+            <h3 class="hello">HEY! I AM</h3>
+            <h1 class="name">Pabitra Das Adhikari</h1>
+
+            <h2 class="role">
+                <span id="typing-text"></span>
+            </h2>
+
+            <a class="resume-btn" href="resume.pdf" download>Download Resume</a>
+        </div>
+    </div>
+
+    <!-- THREE DOT MENU BUTTON -->
+    <div class="menu-btn" id="menuBtn">⋮</div>
+
+    <!-- DROPDOWN MENU -->
+    <div id="dropdownMenu" class="dropdown">
+        <p class="menu-title">Navigation</p>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#code1">C Program 1</a>
+        <a href="#code2">C Program 2</a>
+        <a href="#code3">C Program 3</a>
+        <a href="resume.pdf" download>Download Resume</a>
+    </div>
+
+</section>
+
+<!-- ================= SECTIONS ================= -->
+
+<section id="about" class="hidden-section">
+    <h2>About Me</h2>
+    <p>I am a passionate C programmer and MCA student.</p>
+</section>
+
+<section id="skills" class="hidden-section">
+    <h2>My Skills</h2>
+    <ul>
+        <li>C Language</li>
+        <li>HTML & CSS</li>
+        <li>MYSQL & ORACLE</li>
+        <li>MS Excel, Word, PowerPoint</li>
+        <li>Quick Learning & Adaptability</li>
+        <li>Teamwork & Responsibility</li>
+    </ul>
+</section>
+
+<section id="projects" class="hidden-section">
+    <h2>Projects</h2>
+    <p>Dynamic Memory Allocation</p>
+    <p>Salary Slip Generator</p>
+    <p>File Handling Programs</p>
+</section>
+
+<section id="code1" class="hidden-section">
+    <h2>C Program 1</h2>
+    <pre><code>#include <stdio.h>
+#include <stdlib.h>
+//Dynamic memory allocation & display data
+int main() {
+int n, i;
+int *p;
+
+printf("Enter size: ");
+scanf("%d", &n);
+
+p = (int*)malloc(n * sizeof(int));
+
+printf("Enter elements:\n");
+for(i = 0; i < n; i++)
+    scanf("%d", &p[i]);
+
+printf("You entered: ");
+for(i = 0; i < n; i++)
+    printf("%d ", p[i]);
+
+free(p);
+return 0;
+}</code></pre>
+</section>
+
+<section id="code2" class="hidden-section">
+    <h2>C Program 2</h2>
+    <pre><code>#include <stdio.h>
+//Salary Slip Program
+struct employee {
+char name[30];
+int age;
+char designation[30];
+float basic;
+float ta, da, hra, pf, gross, net;
+};
+
+int main() {
+struct employee e[50];
+int n, i;
+
+printf("Enter number of employees: ");
+scanf("%d", &n);
+
+for(i = 0; i < n; i++) {
+    printf("\nEnter details for Employee %d\n", i + 1);
+
+    printf("Name: ");
+    scanf("%s", e[i].name);
+
+    printf("Age: ");
+    scanf("%d", &e[i].age);
+
+    printf("Designation: ");
+    scanf("%s", e[i].designation);
+
+    printf("Basic Salary: ");
+    scanf("%f", &e[i].basic);
+
+    e[i].ta  = 0.35 * e[i].basic;
+    e[i].da  = 0.60 * e[i].basic;
+    e[i].hra = 0.33 * e[i].basic;
+    e[i].pf  = 0.12 * e[i].basic;
+
+    e[i].gross = e[i].basic + e[i].ta + e[i].da + e[i].hra;
+    e[i].net   = e[i].gross - e[i].pf;
+}
+
+printf("\n========= SALARY SLIP =========\n");
+
+for(i = 0; i < n; i++) {
+    printf("\nEmployee %d:\n", i + 1);
+    printf("Name        : %s\n", e[i].name);
+    printf("Age         : %d\n", e[i].age);
+    printf("Designation : %s\n", e[i].designation);
+    printf("Basic       : %.2f\n", e[i].basic);
+    printf("TA (35%)    : %.2f\n", e[i].ta);
+    printf("DA (60%)    : %.2f\n", e[i].da);
+    printf("HRA (33%)   : %.2f\n", e[i].hra);
+    printf("PF (12%)    : %.2f\n", e[i].pf);
+    printf("Gross Salary: %.2f\n", e[i].gross);
+    printf("Net Salary  : %.2f\n", e[i].net);
+}
+return 0;
+}</code></pre>
+</section>
+
+<section id="code3" class="hidden-section">
+    <h2>C Program 3</h2>
+    <pre><code>#include <stdio.h>
+int main (){
+char b[200];
+FILE *fp = fopen("data.txt", "r");
+fgets(b, sizeof(b), fp);
+printf("Output: %s", b);
+fgets(b,sizeof(b),fp);
+printf("output : %s",b);
+return 0;
+}</code></pre>
+</section>
+
+<!-- ================= JAVASCRIPT ================= -->
+<script>
+// 3-dot menu toggle
+document.getElementById("menuBtn").onclick = function() {
+    const menu = document.getElementById("dropdownMenu");
+    menu.style.display = (menu.style.display === "block") ? "none" : "block";
+};
+
+// Close menu on outside click
+document.addEventListener("click", function(e) {
+    const menu = document.getElementById("dropdownMenu");
+    const btn = document.getElementById("menuBtn");
+    if (!btn.contains(e.target) && !menu.contains(e.target)) {
+        menu.style.display = "none";
+    }
+});
+
+/* ================= TYPING EFFECT ================= */
+const words = ["Student", "Programmer", "C Developer"];
+let i = 0, j = 0;
+let isDeleting = false;
+
+function typeEffect() {
+    let currentWord = words[i];
+
+    if (!isDeleting) {
+        document.getElementById("typing-text").innerHTML =
+            currentWord.substring(0, j + 1);
+        j++;
+
+        if (j === currentWord.length) {
+            isDeleting = true;
+            setTimeout(typeEffect, 1000);
+            return;
+        }
+    } else {
+        document.getElementById("typing-text").innerHTML =
+            currentWord.substring(0, j - 1);
+        j--;
+
+        if (j === 0) {
+            isDeleting = false;
+            i = (i + 1) % words.length;
+        }
+    }
+    setTimeout(typeEffect, isDeleting ? 80 : 130);
+}
+typeEffect();
+</script>
+
+</body>
+</html>
